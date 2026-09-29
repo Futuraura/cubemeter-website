@@ -1,0 +1,318 @@
+---
+import SearchIcon from "~icons/fa7-solid/search?width=1em&height=1em";
+
+import Default from "../layouts/default.astro";
+import HousingPackageGrid from "../components/housing-package-grid.vue";
+
+import HeroBg from "../assets/img/herobg-editorial.png";
+---
+
+<Default title="Главная | Кубометр">
+	<div class="grid">
+		<section id="custom-project" class="hero" style={`--hero-bg: url(${HeroBg.src})`}>
+			<div class="text-buttons">
+				<h1>Когда кубы складываются в пространство для<br />жизни и бизнеса</h1>
+
+				<div class="buttons">
+					<a class="primary" href="/custom-project">Заказать строительство под "ключ"</a>
+					<a class="secondary" href="/portfolio">Наши объекты</a>
+				</div>
+			</div>
+		</section>
+		<section id="objects" class="search-bar">
+			<form class="search-field" action="/search" method="get">
+				<input type="text" name="q" placeholder="Поиск по готовым проектам" />
+				<button class="search" type="submit" aria-label="Искать"><SearchIcon /></button>
+			</form>
+			<a class="all-obj-button" href="/houses">Все объекты</a>
+		</section>
+	</div>
+	<section id="packages" class="housing-packages">
+		<h2>Пакеты домов</h2>
+		<HousingPackageGrid />
+		<a class="all-packages-button" href="/packages">Все пакеты</a>
+	</section>
+</Default>
+
+<style lang="scss" scoped>
+	.grid {
+		display: flex;
+		gap: 12px;
+		flex-direction: column;
+
+		height: clamp(400px, 88dvh, 1000px);
+		width: 100%;
+
+		.hero {
+			background: var(--hero-bg);
+			background-position: 72% 70%;
+			background-size: cover;
+			background-repeat: no-repeat;
+
+			flex: 1;
+			min-height: 0;
+
+			padding: 32px;
+
+			padding-top: calc(32px + 60px);
+
+			box-sizing: border-box;
+
+			border-radius: 16px;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: start;
+
+			.text-buttons {
+				user-select: none;
+				max-width: 768px;
+
+				h1 {
+					color: #fff;
+					font-family: var(--object-sans);
+					font-size: clamp(28px, 5vw, 48px);
+					font-weight: 700;
+				}
+
+				.buttons {
+					display: flex;
+					gap: 10px;
+					flex-wrap: wrap;
+
+					a,
+					button {
+						box-sizing: border-box;
+						text-decoration: none;
+						cursor: pointer;
+						display: flex;
+						min-height: 48px;
+						padding: 10px 30px;
+						justify-content: center;
+						align-items: center;
+						text-align: center;
+						line-height: 1.2;
+						gap: 10px;
+
+						font-family: var(--object-sans);
+						font-size: 18px;
+						font-weight: 400;
+
+						border-radius: 8px;
+						border: 2px solid #fff;
+						backdrop-filter: blur(10px);
+
+						transition: all 0.1s;
+
+						&:focus-visible {
+							outline: 2px solid #fff;
+							outline-offset: 3px;
+						}
+
+						&:active {
+							transform: translateY(1px);
+						}
+					}
+
+					.primary {
+						color: #000;
+						background: #fff;
+
+						&:hover {
+							background: rgba(255, 255, 255, 0.85);
+						}
+					}
+
+					.secondary {
+						color: #fff;
+						background: rgba(255, 255, 255, 0.2);
+
+						&:hover {
+							background: rgba(255, 255, 255, 0.35);
+						}
+					}
+				}
+			}
+		}
+
+		.search-bar {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: start;
+			gap: 12px;
+
+			height: min-content;
+
+			.search-field {
+				flex-direction: row;
+				display: flex;
+				gap: 0;
+
+				border-radius: 16px;
+
+				overflow: hidden;
+
+				width: 100%;
+
+				input,
+				button {
+					border: 0;
+
+					padding: 16px 20px;
+
+					background: #fff;
+					color: #000;
+
+					&:focus {
+						border: 0;
+						outline: 0;
+					}
+				}
+
+				input {
+					padding-right: 0;
+					font-family: var(--object-sans);
+					font-size: 18px;
+					font-weight: 315;
+
+					width: 100%;
+
+					&:placeholder-shown {
+						color: rgba(0, 0, 0, 0.5);
+					}
+				}
+
+				button {
+					align-items: center;
+					display: flex;
+
+					transition: 0.1s all;
+
+					&:hover {
+						background: rgba(255, 255, 255, 0.9);
+					}
+
+					svg {
+						font-size: 18px;
+					}
+				}
+			}
+
+			.all-obj-button {
+				display: flex;
+				padding: 10px 30px;
+				justify-content: center;
+				align-items: center;
+				gap: 10px;
+
+				align-self: stretch;
+				box-sizing: border-box;
+				min-height: 48px;
+
+				font-family: var(--object-sans);
+				font-size: 18px;
+				font-weight: 400;
+				color: #fff;
+				text-align: center;
+				text-decoration: none;
+				text-wrap-mode: nowrap;
+				user-select: none;
+				cursor: pointer;
+
+				border-radius: 16px;
+				border: 2px solid #fff;
+				backdrop-filter: blur(10px);
+				background: 0;
+
+				transition: all 0.1s;
+
+				&:hover {
+					background: rgba(255, 255, 255, 0.1);
+				}
+
+				&:focus-visible {
+					outline: 2px solid #fff;
+					outline-offset: 3px;
+				}
+
+				&:active {
+					transform: translateY(1px);
+				}
+			}
+		}
+	}
+
+	.housing-packages {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding: 0 0 24px;
+
+		h2 {
+			margin: 0;
+			color: #fff;
+			font-family: var(--object-sans);
+			font-size: 36px;
+			font-weight: 600;
+			line-height: 1.1;
+		}
+
+		.all-packages-button {
+			display: flex;
+			box-sizing: border-box;
+			align-self: flex-end;
+			padding: 10px 24px;
+			justify-content: center;
+			align-items: center;
+
+			border: 2px solid #fff;
+			border-radius: 16px;
+			background: transparent;
+			backdrop-filter: blur(10px);
+			color: #fff;
+			font-family: var(--object-sans);
+			font-size: 18px;
+			font-weight: 400;
+			text-decoration: none;
+			cursor: pointer;
+			transition: background 0.1s;
+
+			&:hover {
+				background: rgba(255, 255, 255, 0.1);
+				text-decoration: none;
+			}
+		}
+	}
+
+	@media (max-width: 1152px) {
+		.hero {
+			background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--hero-bg);
+			background-position: 72% 70%;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.grid {
+			height: clamp(360px, 62dvh, 500px);
+		}
+
+		.hero {
+			place-items: center center;
+
+			.text-buttons {
+				.buttons {
+					a,
+					button {
+						padding: 10px 10px;
+
+						font-size: 16px;
+					}
+				}
+			}
+		}
+	}
+</style>

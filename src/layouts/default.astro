@@ -1,0 +1,43 @@
+---
+import Boilerplate from "./boilerplate.astro";
+import Navbar from "../components/navbar.vue";
+import HomeFooter from "../components/home-footer.vue";
+
+const { title } = Astro.props;
+---
+
+<Boilerplate title={title}>
+	<Navbar client:load />
+	<main class="page-content">
+		<slot />
+	</main>
+	<HomeFooter />
+</Boilerplate>
+
+<script>
+	import Lenis from "lenis";
+	import "lenis/dist/lenis.css";
+
+	if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+		const lenis = new Lenis({ lerp: 0.12, wheelMultiplier: 0.9 });
+
+		function raf(time: number) {
+			lenis.raf(time);
+			requestAnimationFrame(raf);
+		}
+
+		requestAnimationFrame(raf);
+	}
+</script>
+
+<style lang="scss" scoped>
+	.page-content {
+		box-sizing: border-box;
+		width: 100%;
+		padding: 12px;
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 48px;
+	}
+</style>
