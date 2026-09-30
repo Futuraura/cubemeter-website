@@ -208,7 +208,7 @@ onBeforeUnmount(() => {
 				font-weight: 350;
 
 				border-radius: 4px;
-				border: 2px solid #fff;
+				border: 2px solid #fff3;
 				backdrop-filter: blur(10px);
 				transition: all 0.1s;
 				cursor: pointer;

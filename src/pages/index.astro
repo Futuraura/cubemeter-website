@@ -54,8 +54,6 @@ import HeroBg from "../assets/img/herobg-editorial.png";
 
 			padding: 32px;
 
-			padding-top: calc(32px + 60px);
-
 			box-sizing: border-box;
 
 			border-radius: 16px;
@@ -297,21 +295,32 @@ import HeroBg from "../assets/img/herobg-editorial.png";
 
 	@media (max-width: 768px) {
 		.grid {
-			height: clamp(360px, 62dvh, 500px);
-		}
+			height: clamp(460px, 80dvh, 800px);
+			.hero {
+				place-items: center center;
+				.text-buttons {
+					.buttons {
+						a,
+						button {
+							padding: 10px 10px;
 
-		.hero {
-			place-items: center center;
-
-			.text-buttons {
-				.buttons {
-					a,
-					button {
-						padding: 10px 10px;
-
-						font-size: 16px;
+							font-size: 16px;
+						}
 					}
 				}
+			}
+
+			.search-bar {
+				flex-direction: column;
+			}
+		}
+	}
+
+	@media (max-width: 520px) {
+		.grid .hero .text-buttons .buttons {
+			a,
+			button {
+				width: 100%;
 			}
 		}
 	}

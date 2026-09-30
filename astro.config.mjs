@@ -129,7 +129,7 @@ export default defineConfig({
 	vite: {
 		server: {
 			host: "0.0.0.0",
-			allowedHosts: ["a8be-109-204-187-112.ngrok-free.app"],
+			allowedHosts: ["95f0-205-147-28-22.ngrok-free.app"],
 		},
 		plugins: [
 			svgLoader(),

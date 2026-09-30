@@ -3,28 +3,33 @@ import HouseImage from "../assets/img/herobg.png?url";
 import HouseEditorialImage from "../assets/img/herobg-editorial.png?url";
 
 const housingPackages = [
-	{ name: "Астра", price: 100, image: HouseImage },
-	{ name: "Делюкс", price: 140, image: HouseEditorialImage },
-	{ name: "Евро", price: 90, image: HouseImage },
-	{ name: "Комфорт", price: 120, image: HouseEditorialImage },
-	{ name: "Сканди", price: 130, image: HouseImage },
-	{ name: "Барнхаус", price: 160, image: HouseEditorialImage },
-	{ name: "Модерн", price: 150, image: HouseImage },
-	{ name: "Шале", price: 135, image: HouseEditorialImage },
-	{ name: "Лофт", price: 110, image: HouseImage },
-	{ name: "Классик", price: 100, image: HouseEditorialImage },
-	{ name: "Верона", price: 145, image: HouseImage },
-	{ name: "Терем", price: 125, image: HouseEditorialImage },
+	{ name: "Астра", slug: "astra", price: 100, image: HouseImage },
+	{ name: "Делюкс", slug: "deluxe", price: 140, image: HouseEditorialImage },
+	{ name: "Евро", slug: "euro", price: 90, image: HouseImage },
+	{ name: "Комфорт", slug: "komfort", price: 120, image: HouseEditorialImage },
+	{ name: "Сканди", slug: "scandi", price: 130, image: HouseImage },
+	{ name: "Барнхаус", slug: "barnhaus", price: 160, image: HouseEditorialImage },
+	{ name: "Модерн", slug: "modern", price: 150, image: HouseImage },
+	{ name: "Шале", slug: "chalet", price: 135, image: HouseEditorialImage },
+	{ name: "Лофт", slug: "loft", price: 110, image: HouseImage },
+	{ name: "Классик", slug: "classic", price: 100, image: HouseEditorialImage },
+	{ name: "Верона", slug: "verona", price: 145, image: HouseImage },
+	{ name: "Терем", slug: "terem", price: 125, image: HouseEditorialImage },
 ];
 </script>
 
 <template>
 	<div class="housing-package-grid">
-		<article v-for="housingPackage in housingPackages" :key="housingPackage.name" class="package-card">
+		<a
+			v-for="housingPackage in housingPackages"
+			:key="housingPackage.slug"
+			:href="`/package/${housingPackage.slug}`"
+			class="package-card"
+		>
 			<img :src="housingPackage.image" :alt="`Проект дома ${housingPackage.name}`" loading="lazy" />
 			<h2>{{ housingPackage.name }}</h2>
 			<p>{{ housingPackage.price.toLocaleString("ru-RU") }} АРы</p>
-		</article>
+		</a>
 	</div>
 </template>
 
@@ -36,6 +41,7 @@ const housingPackages = [
 	gap: 12px;
 
 	.package-card {
+		display: block;
 		box-sizing: border-box;
 		min-width: 0;
 		padding: 12px;
@@ -45,6 +51,8 @@ const housingPackages = [
 		color: #151515;
 		font-family: var(--object-sans);
 		text-align: center;
+		text-decoration: none;
+		cursor: pointer;
 		user-select: none;
 		transition:
 			transform 180ms ease,
@@ -53,6 +61,11 @@ const housingPackages = [
 		&:hover {
 			transform: translateY(-3px);
 			box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+		}
+
+		&:focus-visible {
+			outline: 2px solid #fff;
+			outline-offset: 3px;
 		}
 
 		img {
